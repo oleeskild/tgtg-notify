@@ -20,7 +20,7 @@ sms_client = Client(account_sid, auth_token)
 
 favs = client.get_items()
 number_available = favs[0]["items_available"] 
-if number_available == 1:
+if number_available == 0:
     print('Empty')
 else:
     to_number = os.getenv("TO_NUMBER")
