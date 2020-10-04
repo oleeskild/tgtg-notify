@@ -19,25 +19,15 @@ else:
 sms_client = Client(account_sid, auth_token)
 
 favs = client.get_items()
-anything_available = False
-msg = ""
-for fav in favs:
-    avail = fav["items_available"]
-    if(avail >0):
-        anything_available = True
-    name = fav["display_name"]
-    msg += "Fra " + name + ": " + str(avail) + " poser tilgjengelig \n"
-
-
+print(favs)
 number_available = favs[0]["items_available"] 
-number_available = favs[0]["display_name"] 
 number_available_meny = favs[1]["items_available"] 
-if not anything_available:
+if number_available == 0:
     print('Empty')
 else:
     to_number = os.getenv("TO_NUMBER")
     sms_client.messages.create(
-                body=(msg),
+                body=('Antall fra BB Sletten: ' + str(number_available)),
                 from_='Elon Musk',
                 to=to_number
             )
